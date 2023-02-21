@@ -2,9 +2,9 @@ import MainConstructor from './main.vue'
 import { VNode, render, createVNode, shallowReactive, ComponentInternalInstance, ref } from "vue"
 type Props = {
   id?: any,
-  type?: String,
+  type?: string,
   message?: string,
-  duration?: Number,
+  duration?: number,
 }
 interface MessageHandler {
   close: () => void
@@ -37,18 +37,18 @@ const closeMessage = (instance: MessageContext) => {
 export default function MyMessage(options: Props) {
   let id = `my-message${seed++}`
   options.id = id
-  const conent = document.createElement('div')
+  const content = document.createElement('div')
   const vnode = createVNode(MainConstructor, {
     ...options, 
     onClose () {
       closeMessage(instance)
     },
     onDestroy () {
-      render(null, conent)
+      render(null, content)
     },
   })
-  render(vnode, conent)
-  document.body.appendChild(conent.firstElementChild!)
+  render(vnode, content)
+  document.body.appendChild(content.firstElementChild!)
   const vm = vnode.component!
   const topVal = ref(20)
   instances.forEach(item => {
